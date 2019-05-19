@@ -1,12 +1,6 @@
 #include <SFML/Graphics.hpp>
-
-bool between(float num, float min, float max);
-
-extern int wWidth;
-extern int wHeight;
-
-extern int pWidth;
-extern int pHeight;
+#include "globalVar.h"
+#include "func.h"
 
 void eMove(sf::RectangleShape& player, sf::CircleShape following, bool enemy = true)
 {
@@ -18,6 +12,7 @@ void eMove(sf::RectangleShape& player, sf::CircleShape following, bool enemy = t
 
 void bMove(sf::CircleShape& ball, float ms, sf::RectangleShape colliders[2])
 {
+	//static ball vars
 	static double speedMod = 0;
 	static double ballMod = 0;
 
@@ -26,9 +21,11 @@ void bMove(sf::CircleShape& ball, float ms, sf::RectangleShape colliders[2])
 	static bool signX = true;
 	static bool signY = false;
 
+	//single time use vars
 	sf::Vector2f b = ball.getPosition();
 	float br = ball.getRadius();
 
+	//checks for collision with sides
 	if (b.x + 2 * br > wWidth)
 	{
 		signX = false;
@@ -38,6 +35,7 @@ void bMove(sf::CircleShape& ball, float ms, sf::RectangleShape colliders[2])
 		signX = true;
 	}
 
+	//checks for collision with paddles
 	for (int i = 0; i < 2; i++)
 	{
 		sf::Vector2f c = colliders[i].getPosition();
@@ -51,6 +49,7 @@ void bMove(sf::CircleShape& ball, float ms, sf::RectangleShape colliders[2])
 				if(bottomHitLast)
 					bottomHitLast = false;
 					ballMod += 1;
+					ball.setPosition(b.x, pHeight);
 				
 				if (speedMod < 2)
 					speedMod += 0.1;
@@ -66,6 +65,7 @@ void bMove(sf::CircleShape& ball, float ms, sf::RectangleShape colliders[2])
 				if (!bottomHitLast)
 					bottomHitLast = true;
 					ballMod += 1;
+					ball.setPosition(b.x, wHeight - (pHeight + br*2));
 
 				if(speedMod < 2)
 					speedMod += 0.1;
@@ -73,6 +73,7 @@ void bMove(sf::CircleShape& ball, float ms, sf::RectangleShape colliders[2])
 		}
 	}
 
+	//updates ball speed and direction
 	float regSpeed = +ms / (4 - speedMod);
 	sf::Vector2f speed;
 	if (signX)
@@ -93,9 +94,11 @@ void bMove(sf::CircleShape& ball, float ms, sf::RectangleShape colliders[2])
 		speed.y = -regSpeed;
 	}
 
+	//updates ball movement/size
 	ball.move(speed);
 	ball.setRadius(5 + (ballMod / 2));
 
+	//checks if ball is offscreen, if so reset ball vars
 	if (b.y < -40 || b.y > wHeight + 40)
 	{
 		ball.setPosition(wWidth / 2, wHeight / 2);
@@ -110,11 +113,14 @@ void bMove(sf::CircleShape& ball, float ms, sf::RectangleShape colliders[2])
 
 void pMove(sf::RectangleShape& player, float ms, int controlType = 0)
 {
+	//place holder names
 	float xPos = player.getPosition().x;
 	float speed = ms;
 
+	//checks if you can keep moving normally without getting off screen
 	if (between(xPos, 0, wWidth - pWidth))
 	{
+		//changes control scheme to preference
 		if (controlType == 0)
 		{
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
@@ -140,6 +146,7 @@ void pMove(sf::RectangleShape& player, float ms, int controlType = 0)
 	}
 	else
 	{
+		//corrects offscreen movement
 		if (xPos > pWidth / 2)
 		{
 			player.move(-2, 0);

@@ -2,32 +2,30 @@
 #include <iostream>
 #include <thread>
 
+#include "creation.h"
+#include "move.h"
+
 using namespace std;
 
+//personally I prefer AD, but most use arrow keys so that's what it's set to
+enum ctrls { AD, LR };
+
+//gameplay vars
+constexpr bool ctrlScheme = LR;
+constexpr bool twoPlayer = true;
+
+//window var
 int wWidth = 1280;
 int wHeight = 720;
+constexpr int fpsMax = 300;
+const static string wName = "Pong";
 
+//game object var
 int pWidth = 150;
 int pHeight = 5;
 
-bool between(float num, float min, float max);
-void events(sf::RenderWindow& window);
-
-void pMove(sf::RectangleShape& player, float ms, int controlType = 0);
-void eMove(sf::RectangleShape& player, sf::CircleShape following, bool enemy = true);
-void bMove(sf::CircleShape& ball, float ms, sf::RectangleShape colliders[2]);
-
-sf::RectangleShape createPlayer(bool enemy = false);
-sf::CircleShape createBall();
-
 int main()
 {
-	sf::Clock deltaClock;
-
-	//window var
-	const static string wName = "Pong";
-	constexpr int fpsMax = 300;
-
 	//window
 	sf::RenderWindow window(sf::VideoMode(wWidth, wHeight), wName);
 	window.setFramerateLimit(fpsMax);
@@ -36,12 +34,7 @@ int main()
 	sf::RectangleShape player = createPlayer();
 	sf::RectangleShape enemy = createPlayer(true);
 	sf::CircleShape ball = createBall();
-	
-	sf::View view;
-	view.setSize(sf::Vector2f(1280, 720));
-	view.setCenter(wWidth / 2, wHeight / 2);
-	
-	int zoom = 1;
+	sf::Clock deltaClock;
 
 	while (window.isOpen())
 	{
@@ -49,22 +42,25 @@ int main()
 		events(window);
 
 		//move
-		eMove(enemy, ball);
-		//eMove(player, ball, 0);
-		pMove(player, ms, 1);
-
 		sf::RectangleShape players[2] = { player, enemy };
-		bMove(ball, ms, players);
-
-		//printf("%d\n", int(ms));
+		if (twoPlayer)
+		{
+			pMove(player, ms, ctrlScheme);
+			pMove(enemy, ms, !ctrlScheme);
+			bMove(ball, ms, players);
+		}
+		else
+		{
+			eMove(enemy, ball);
+			pMove(player, ms, ctrlScheme);
+			bMove(ball, ms, players);
+		}
 
 		//draw
 		window.clear();
-
 		window.draw(player);
 		window.draw(enemy);
 		window.draw(ball);
-		
 		window.display();
 	}
 

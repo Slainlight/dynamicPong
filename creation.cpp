@@ -1,10 +1,5 @@
 #include <SFML/Graphics.hpp>
-
-extern int wWidth;
-extern int wHeight;
-
-extern int pWidth;
-extern int pHeight;
+#include "globalVar.h"
 
 sf::RectangleShape createPlayer(bool enemy = false)
 {

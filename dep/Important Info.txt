@@ -1,0 +1,1 @@
+Using only x64, x86 windows will not work unless SFML is reconfigured

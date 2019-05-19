@@ -1,9 +1,0 @@
-﻿  main.cpp
-C:\Users\Matthew\source\repos\Sparse Spars\main.cpp(42,37): warning C4244:  'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\Matthew\source\repos\Sparse Spars\main.cpp(42,24): warning C4244:  'argument': conversion from 'int' to 'float', possible loss of data
-  Generating code
-  0 of 144 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
-    0 functions were new in current compilation
-    0 functions had inline decision re-evaluated but remain unchanged
-  Finished generating code
-  Sparse Spars.vcxproj -> C:\Users\Matthew\source\repos\Sparse Spars\x64\Release\Sparse Spars.exe

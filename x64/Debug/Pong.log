@@ -1,0 +1,31 @@
+﻿  creation.cpp
+C:\Users\Matthew\source\repos\Threads\dynamicPong\creation.cpp(3,46): error C2572:  'createPlayer': redefinition of default argument: parameter 1
+C:\Users\Matthew\source\repos\Threads\dynamicPong\creation.h(6): message :  see declaration of 'createPlayer'
+C:\Users\Matthew\source\repos\Threads\dynamicPong\creation.cpp(12,22): warning C4244:  'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Matthew\source\repos\Threads\dynamicPong\creation.cpp(12,16): warning C4244:  'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Matthew\source\repos\Threads\dynamicPong\creation.cpp(13,33): warning C4244:  'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\Matthew\source\repos\Threads\dynamicPong\creation.cpp(13,33): warning C4244:         with
+C:\Users\Matthew\source\repos\Threads\dynamicPong\creation.cpp(13,33): warning C4244:         [
+C:\Users\Matthew\source\repos\Threads\dynamicPong\creation.cpp(13,33): warning C4244:             T=float
+C:\Users\Matthew\source\repos\Threads\dynamicPong\creation.cpp(13,33): warning C4244:         ]
+C:\Users\Matthew\source\repos\Threads\dynamicPong\creation.cpp(13,25): warning C4244:  'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\Matthew\source\repos\Threads\dynamicPong\creation.cpp(13,25): warning C4244:         with
+C:\Users\Matthew\source\repos\Threads\dynamicPong\creation.cpp(13,25): warning C4244:         [
+C:\Users\Matthew\source\repos\Threads\dynamicPong\creation.cpp(13,25): warning C4244:             T=float
+C:\Users\Matthew\source\repos\Threads\dynamicPong\creation.cpp(13,25): warning C4244:         ]
+C:\Users\Matthew\source\repos\Threads\dynamicPong\creation.cpp(21,36): warning C4244:  'argument': conversion from 'int' to 'float', possible loss of data
+  move.cpp
+C:\Users\Matthew\source\repos\Threads\dynamicPong\creation.cpp(21,23): warning C4244:  'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Matthew\source\repos\Threads\dynamicPong\move.cpp(3,80): error C2572:  'eMove': redefinition of default argument: parameter 1
+C:\Users\Matthew\source\repos\Threads\dynamicPong\move.h(7): message :  see declaration of 'eMove'
+C:\Users\Matthew\source\repos\Threads\dynamicPong\move.cpp(8,93): warning C4244:  'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Matthew\source\repos\Threads\dynamicPong\move.cpp(46,28): warning C4244:  'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Matthew\source\repos\Threads\dynamicPong\move.cpp(70,17): warning C4244:  'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\Matthew\source\repos\Threads\dynamicPong\move.cpp(91,20): warning C4244:  'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\Matthew\source\repos\Threads\dynamicPong\move.cpp(95,40): warning C4244:  'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Matthew\source\repos\Threads\dynamicPong\move.cpp(95,27): warning C4244:  'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Matthew\source\repos\Threads\dynamicPong\move.cpp(105,68): error C2572:  'pMove': redefinition of default argument: parameter 1
+C:\Users\Matthew\source\repos\Threads\dynamicPong\move.h(6): message :  see declaration of 'pMove'
+  func.cpp
+  Generating Code...
+C:\Users\Matthew\source\repos\Threads\dynamicPong\move.cpp(110,30): warning C4244:  'argument': conversion from 'int' to 'float', possible loss of data
