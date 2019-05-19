@@ -1,11 +1,8 @@
 # dynamicPong
 
-<<<<<<< HEAD
-=======
 -- about game --
 AD or <- and -> controls
 
->>>>>>> e79eaf46bc8266ccf1f1cf31fd8f7008fcc6a98c
 This is the first step up a mountain.
 
 I've been messing with programming in random things through the last six years of
@@ -23,8 +20,3 @@ simple games and gradually going through time for more complex games will give m
 a grasp on better programming techniques.
 
 ps: I sugguest using organization by type in windows explorer if you plan to modify
-<<<<<<< HEAD
-my little project here! It's much neater
-=======
-my little project here! It's much neater
->>>>>>> e79eaf46bc8266ccf1f1cf31fd8f7008fcc6a98c
