@@ -29,3 +29,14 @@ bool between(float num, float min, float max)
 	}
 }
 
+bool twoPlayerChange()
+{
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num1))
+	{
+		return true;
+	}
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num2))
+	{
+		return false;
+	}
+}

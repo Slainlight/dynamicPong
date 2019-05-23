@@ -5,3 +5,4 @@
 
 bool between(float num, float min, float max);
 void events(sf::RenderWindow& window);
+bool twoPlayerChange();

@@ -12,13 +12,13 @@ enum ctrls { AD, LR };
 
 //gameplay vars
 constexpr bool ctrlScheme = LR;
-constexpr bool twoPlayer = true;
+bool twoPlayer = false;
 
 //window var
 int wWidth = 1280;
 int wHeight = 720;
-constexpr int fpsMax = 300;
-const static string wName = "Pong";
+constexpr int fpsMax = 144;
+const static string wName = "Dynamic Pong";
 
 //game object var
 int pWidth = 150;
@@ -43,6 +43,8 @@ int main()
 
 		//move
 		sf::RectangleShape players[2] = { player, enemy };
+		
+		twoPlayer = twoPlayerChange();
 		if (twoPlayer)
 		{
 			pMove(player, ms, ctrlScheme);

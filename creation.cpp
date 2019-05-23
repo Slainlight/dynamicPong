@@ -17,8 +17,7 @@ sf::RectangleShape createPlayer(bool enemy = false)
 
 sf::CircleShape createBall()
 {
-	sf::CircleShape x(8);
-	x.setRadius(5);
+	sf::CircleShape x(5);
 	x.setPosition(wWidth / 2, wHeight / 2);
 	return x;
 }
