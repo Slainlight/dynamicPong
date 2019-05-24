@@ -29,14 +29,46 @@ bool between(float num, float min, float max)
 	}
 }
 
-bool twoPlayerChange()
+void twoPlayerChange(bool& twoPlayers)
 {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num1))
 	{
-		return true;
+		twoPlayers = true;
 	}
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num2))
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num2))
 	{
-		return false;
+		twoPlayers = false;
+	}
+}
+
+int readVar(string wantedName)
+{
+	string line;
+	ifstream input("settings.txt");
+
+	while (getline(input, line))
+	{
+		istringstream ss(line);
+		string name;
+		int var;
+
+		ss >> name >> var;
+
+		if (wantedName == name)
+		{
+			return var;
+		}
+	}
+
+	string defaultNames[] = {"windowWidth", "windowHeight", "paddleWidth", "paddleHeight", "ctrlScheme", "fpsMax", "ballRadius", "speedCap", "twoPlayer", "auto"};
+	int defaultValues[] =   {         1280,            720,           150,             10,            0,      120,            5,          2,           0,      0};
+
+	//defaults if nothing else was found
+	for (int i = 0; i < defaultNames->length() + 1; i++)
+	{
+		if (defaultNames[i] == wantedName)
+		{
+			return defaultValues[i];
+		}
 	}
 }

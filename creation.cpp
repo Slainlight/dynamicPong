@@ -1,5 +1,6 @@
 #include <SFML/Graphics.hpp>
 #include "globalVar.h"
+#include "func.h"
 
 sf::RectangleShape createPlayer(bool enemy = false)
 {
@@ -17,7 +18,7 @@ sf::RectangleShape createPlayer(bool enemy = false)
 
 sf::CircleShape createBall()
 {
-	sf::CircleShape x(5);
+	sf::CircleShape x(readVar("ballRadius"));
 	x.setPosition(wWidth / 2, wHeight / 2);
 	return x;
 }

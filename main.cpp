@@ -11,20 +11,24 @@ using namespace std;
 enum ctrls { AD, LR };
 
 //gameplay vars
-constexpr bool ctrlScheme = LR;
-bool twoPlayer = false;
+bool ctrlScheme = readVar("ctrlScheme");
+bool twoPlayer = readVar("twoPlayer");
 
 //window var
-int wWidth = 1280;
-int wHeight = 720;
-constexpr int fpsMax = 144;
+int wWidth = readVar("windowWidth");
+int wHeight = readVar("windowHeight");
+int fpsMax = readVar("fpsMax");
 const static string wName = "Dynamic Pong";
 
 //game object var
-int pWidth = 150;
-int pHeight = 5;
+int pWidth = readVar("paddleWidth");
+int pHeight = readVar("paddleHeight");
 
+#if _DEBUG
 int main()
+#else
+int WinMain()
+#endif
 {
 	//window
 	sf::RenderWindow window(sf::VideoMode(wWidth, wHeight), wName);
@@ -36,6 +40,8 @@ int main()
 	sf::CircleShape ball = createBall();
 	sf::Clock deltaClock;
 
+	bool automaticPlay = readVar("auto");
+
 	while (window.isOpen())
 	{
 		float ms = float(deltaClock.restart().asMilliseconds());
@@ -44,17 +50,26 @@ int main()
 		//move
 		sf::RectangleShape players[2] = { player, enemy };
 		
-		twoPlayer = twoPlayerChange();
-		if (twoPlayer)
+		twoPlayerChange(twoPlayer);
+		if (!automaticPlay)
 		{
-			pMove(player, ms, ctrlScheme);
-			pMove(enemy, ms, !ctrlScheme);
-			bMove(ball, ms, players);
+			if (twoPlayer)
+			{
+				pMove(player, ms, ctrlScheme);
+				pMove(enemy, ms, !ctrlScheme);
+				bMove(ball, ms, players);
+			}
+			else
+			{
+				eMove(enemy, ball);
+				pMove(player, ms, ctrlScheme);
+				bMove(ball, ms, players);
+			}
 		}
 		else
 		{
 			eMove(enemy, ball);
-			pMove(player, ms, ctrlScheme);
+			eMove(player, ball, 0);
 			bMove(ball, ms, players);
 		}
 

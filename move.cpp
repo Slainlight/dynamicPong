@@ -4,10 +4,14 @@
 
 void eMove(sf::RectangleShape& player, sf::CircleShape following, bool enemy = true)
 {
-	if(enemy)
-		player.setPosition(following.getPosition().x + following.getRadius() - pWidth / 2, 0);
+	float fXPos = following.getPosition().x;
+	float pXPos = player.getPosition().x;
+	float radius = following.getRadius();
+
+	if (enemy)
+		player.setPosition(fXPos + radius - pWidth / 2, 0);
 	else
-		player.setPosition(following.getPosition().x + following.getRadius() - pWidth / 2, wHeight-pHeight);
+		player.setPosition(fXPos + radius - pWidth / 2, wHeight - pHeight);
 }
 
 void bMove(sf::CircleShape& ball, float ms, sf::RectangleShape colliders[2])
@@ -18,6 +22,7 @@ void bMove(sf::CircleShape& ball, float ms, sf::RectangleShape colliders[2])
 
 	static bool bottomHitLast = false;
 
+	static float speedCap = readVar("speedCap");
 	static bool signX = true;
 	static bool signY = false;
 
@@ -51,7 +56,7 @@ void bMove(sf::CircleShape& ball, float ms, sf::RectangleShape colliders[2])
 					ballMod += 1;
 					ball.setPosition(b.x, pHeight);
 				
-				if (speedMod < 2)
+				if (speedMod < speedCap)
 					speedMod += 0.1;
 			}
 		}
@@ -67,7 +72,7 @@ void bMove(sf::CircleShape& ball, float ms, sf::RectangleShape colliders[2])
 					ballMod += 1;
 					ball.setPosition(b.x, wHeight - (pHeight + br*2));
 
-				if(speedMod < 2)
+				if(speedMod < speedCap)
 					speedMod += 0.1;
 			}
 		}
@@ -96,7 +101,7 @@ void bMove(sf::CircleShape& ball, float ms, sf::RectangleShape colliders[2])
 
 	//updates ball movement/size
 	ball.move(speed);
-	ball.setRadius(5 + (ballMod / 2));
+	ball.setRadius(readVar("ballRadius") + (ballMod / 2));
 
 	//checks if ball is offscreen, if so reset ball vars
 	if (b.y < -40 || b.y > wHeight + 40)
@@ -115,7 +120,7 @@ void pMove(sf::RectangleShape& player, float ms, int controlType = 0)
 {
 	//place holder names
 	float xPos = player.getPosition().x;
-	float speed = ms;
+	float speed = ms/1.6;
 
 	//checks if you can keep moving normally without getting off screen
 	if (between(xPos, 0, wWidth - pWidth))

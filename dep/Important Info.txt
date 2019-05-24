@@ -1,1 +1,2 @@
 Using only x64, x86 windows will not work unless SFML is reconfigured
+Use "settings.txt" to change variables w/o compile

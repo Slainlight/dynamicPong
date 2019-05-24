@@ -1,0 +1,10 @@
+windowWidth 1280
+windowHeight 720
+paddleWidth 150
+paddleHeight 10
+ctrlScheme 1
+fpsMax 120
+ballRadius 5
+speedCap 2
+twoPlayer 0
+auto 0
